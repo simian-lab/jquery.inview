@@ -32,37 +32,43 @@
     Scroll to change the URL
   </p>
 
-  <div class="test test-one" data-url="test-1">
+  <div class="test test-one" id="test-one" data-url="test-1">
     test-1
   </div>
 
-  <div class="test test-two" data-url="test-2">
+  <div class="test test-two" id="test-two" data-url="test-2">
     test-2
   </div>
 
-  <div class="test" data-url="test-3">
+  <div class="test test-three" id="test-three" data-url="test-3">
     test-3
   </div>
 
-  <div class="test long" data-url="test-4">
+  <div class="test test-four long" id="test-four" data-url="test-4">
     test-4
   </div>
 
-  <div class="test" data-url="test-5">
+  <div class="test test-five" id="test-five" data-url="test-5">
     test-5
   </div>
 
-  <div class="test short" data-url="test-6">
+  <div class="test test-six short" id="test-six" data-url="test-6">
     test-6
   </div>
 
-  <div class="test" data-url="test-7">
+  <div class="test test-seven" id="test-seven" data-url="test-7">
     test-7
   </div>
 
   <script>
-    $('.test').bind('inview', function(event) {
-      history.replaceState(null, null, event.target.dataset.url);
+    $('.test').bind('inview', function(event, isInView) {
+      if(isInView) {
+        history.replaceState(null, null, event.target.dataset.url);
+        console.log('div ' + event.target.id + ' entered');
+      }
+      else {
+        console.log('div ' + event.target.id + ' left');
+      }
     });
   </script>
 </body>
