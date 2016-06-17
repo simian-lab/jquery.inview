@@ -120,7 +120,12 @@
 
       if(topLimit >= viewportSize.height * 0.51 && 
         bottomLimit >= viewportSize.height * 0.51 ) {
-        $element.data('inview', true).trigger('inview', [true]);
+        if(!inView) {
+          $element.data('inview', true).trigger('inview', [true]);
+        }
+      }
+      else if(inView) {
+        $element.data('inview', false).trigger('inview', [false]); 
       }
     }
   }
