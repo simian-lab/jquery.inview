@@ -15,7 +15,6 @@
     factory(jQuery);
   }
 }(function ($) {
-
   var inviewObjects = [], viewportSize, viewportOffset,
       d = document, w = window, documentElement = d.documentElement, timer;
 
@@ -116,15 +115,12 @@
         return;
       }
 
-      if (elementOffset.top + elementSize.height > viewportOffset.top &&
-          elementOffset.top < viewportOffset.top + viewportSize.height &&
-          elementOffset.left + elementSize.width > viewportOffset.left &&
-          elementOffset.left < viewportOffset.left + viewportSize.width) {
-        if (!inView) {
-          $element.data('inview', true).trigger('inview', [true]);
-        }
-      } else if (inView) {
-        $element.data('inview', false).trigger('inview', [false]);
+      var topLimit = viewportSize.height - elementOffset.top + viewportOffset.top;
+      var bottomLimit = (elementOffset.top + elementSize.height) - viewportOffset.top;
+
+      if(topLimit >= viewportSize.height * 0.51 && 
+        bottomLimit >= viewportSize.height * 0.51 ) {
+        $element.data('inview', true).trigger('inview', [true]);
       }
     }
   }

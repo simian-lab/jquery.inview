@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infinite Scroll Test</title>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="../jquery.inview.js"></script>
+  <style>
+    body {
+      font-family: Arial, Verdana, sans-serif;
+      font-size: 12px;
+    }
+
+    .test {
+      height: 150vh;
+      width: 50vw;
+      background: lightgray;
+      text-align: center;
+      margin: 2rem auto;
+    }
+    .test.short {
+      height: 50vh;
+    }
+    .test.long {
+      height: 300vh;
+    }
+  </style>
+</head>
+<body>
+  <h1>Infinite Scroll Test</h1>
+  <p>
+    Scroll to change the URL
+  </p>
+
+  <div class="test test-one" data-url="test-1">
+    test-1
+  </div>
+
+  <div class="test test-two" data-url="test-2">
+    test-2
+  </div>
+
+  <div class="test" data-url="test-3">
+    test-3
+  </div>
+
+  <div class="test long" data-url="test-4">
+    test-4
+  </div>
+
+  <div class="test" data-url="test-5">
+    test-5
+  </div>
+
+  <div class="test short" data-url="test-6">
+    test-6
+  </div>
+
+  <div class="test" data-url="test-7">
+    test-7
+  </div>
+
+  <script>
+    $('.test').bind('inview', function(event) {
+      history.replaceState(null, null, event.target.dataset.url);
+    });
+  </script>
+</body>
+</html>
